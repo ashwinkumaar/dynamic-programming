@@ -89,3 +89,7 @@ def how_many_ways_loop(m, coins) -> int:
 
 print(how_many_ways_loop(13, [1, 4, 5]))
 print(how_many_ways_loop(150, [1, 4, 5]))
+
+
+def maze_recursive(n, m) -> int:
+
