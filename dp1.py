@@ -90,6 +90,44 @@ def how_many_ways_loop(m, coins) -> int:
 print(how_many_ways_loop(13, [1, 4, 5]))
 print(how_many_ways_loop(150, [1, 4, 5]))
 
-
+memo = {}
 def maze_recursive(n, m) -> int:
+    if n > m:
+        n, m = m, n
+    if (n, m) not in memo:
+        if n == 1:
+            memo[n, m] = 1
+        else:
+            memo[n, m] = maze_recursive(n, m-1) + maze_recursive(n-1, m)
+    return memo[n, m]
 
+
+# print(maze_recursive(1, 1))
+# print(maze_recursive(2, 2))
+# print(maze_recursive(2, 3))
+# print(maze_recursive(3, 2))
+# print(maze_recursive(3, 3))
+
+print(maze_recursive(106, 73))
+
+def maze_loop(n, m) -> int:
+    memo = {}
+    # if n > m:
+    #     n, m = m, n
+    for i in range(1, n+1):
+        memo[i, 1] = 1
+    for j in range(1, m+1):
+        memo[1, j] = 1
+    for j in range(2, m+1):
+        for i in range(2, n+1):
+            memo[i, j] = memo[i-1, j] + memo[i, j-1]
+    return memo[n, m]
+
+
+print(maze_loop(1, 1))
+print(maze_loop(2, 2))
+print(maze_loop(2, 3))
+print(maze_loop(3, 2))
+print(maze_loop(3, 3))
+
+print(maze_recursive(106, 73))
